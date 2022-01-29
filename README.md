@@ -39,3 +39,8 @@ Steps:
 
 ![image](https://user-images.githubusercontent.com/37621211/151659131-6e4960fa-a443-4d54-9250-25484e2799c0.png)
 
+
+==========================================================================
+
+3. Move the SAPUI5 project to resources folder. Adjust resources/html5/index.html, app/sapui5project/annotations.cds and mta.yaml accordingly.
+
