@@ -17,7 +17,7 @@
 
         <semantic:content>
 
-            <Button text="GET Call" press="onPressGetCall"/>
+            
             <Table
                 id="table"
                 width="auto"
@@ -51,6 +51,8 @@
                                     priority="NeverOverflow"/>
                             </layoutData>
                         </SearchField>
+
+                        <Button text="Test GET Call" press="onPressGetCall"/>
                     </OverflowToolbar>
                 </headerToolbar>
 

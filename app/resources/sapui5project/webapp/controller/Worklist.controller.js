@@ -147,9 +147,11 @@ sap.ui.define([
 
         onPressGetCall:function () {
                 
-            var jsonBooks = {
-              title: "test",
-              stock:"test"              
+            var randomID = Math.floor(Math.random() * 10000) ;
+            var jsonObjSales = {
+              ID: randomID,
+              region:"Asia",
+              country: "Nepal"           
             };
                   
                   var uri = "/catalog/Sales";
@@ -165,33 +167,30 @@ sap.ui.define([
                     success: function (data, status, xhr) {     
                         
                         var response = data;
-                        MessageBox.information(response);
+                        var firstRecord = JSON.stringify(data.value[0]);
+                        MessageBox.information(firstRecord);
 
-                    //  // tokenModel["csrfToken"] = xhr.getResponseHeader('X-CSRF-Token');
-                    //  // token = tokenModel["csrfToken"];
-                    //   $.ajax({
-                    //     url: uri,
-                    //     type: "POST",
-                    //     contentType: "application/json",
-                    //     headers: {
-                    //       "X-CSRF-Token": xhr.getResponseHeader("X-CSRF-Token"),
-                    //     },
-                    //     data: JSON.stringify({
-                    //     "title": "test",
-                    //     "stock":"teststock" 
-                    //     }),//   JSON.stringify({jsonBooks}),
-                    //     dataType: "json",
-                    //     async: false,
-                    //     timeout: 0,
-                    //     error: function (data) {
-                    //       sap.m.MessageToast.show("Error ");
-                    //       sap.ui.core.BusyIndicator.hide();
-                    //     },
-                    //     success: function (data) {
-                    //       sap.ui.core.BusyIndicator.hide();
-                    //       sap.m.MessageToast.show("successfull");
-                    //     },
-                    //   });
+                     
+                      $.ajax({
+                        url: uri,
+                        type: "POST",
+                        contentType: "application/json",
+                        headers: {
+                          "X-CSRF-Token": xhr.getResponseHeader("X-CSRF-Token"),
+                        },
+                        data: JSON.stringify(jsonObjSales),
+                        dataType: "json",
+                        async: false,
+                        timeout: 0,
+                        error: function (data) {
+                          sap.m.MessageToast.show("Error ");
+                          sap.ui.core.BusyIndicator.hide();
+                        },
+                        success: function (data) {
+                          sap.ui.core.BusyIndicator.hide();
+                          sap.m.MessageToast.show("Post Call Successfull");
+                        },
+                      });
                     },
                     error: function (err) {
                       sap.m.MessageToast.show("Error get");
