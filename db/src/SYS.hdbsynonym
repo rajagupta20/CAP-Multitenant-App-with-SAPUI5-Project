@@ -1,0 +1,8 @@
+{
+  "APP26012022_DB_DUMMY": {
+    "target": {
+      "object": "DUMMY",
+      "schema": "SYS"
+    }
+  }
+}

@@ -1,0 +1,33 @@
+GET http://localhost:4004/catalog/
+Authorization: Basic joe:
+###
+GET http://localhost:4004/catalog/$metadata
+Authorization: Basic joe:
+###
+GET http://localhost:4004/catalog/Sales
+Authorization: Basic joe:
+###
+POST http://localhost:4004/catalog/Sales(1)/CatalogService.boost
+Authorization: Basic joe:
+Content-Type: application/json
+
+{}
+###
+GET http://localhost:4004/catalog/Sales?$apply=filter(amount%20gt%20500)/groupby((region),aggregate($count%20as%20nrCountries))
+Authorization: Basic joe:
+###
+GET http://localhost:4004/catalog/topSales(amount=700)
+Authorization: Basic joe:
+###
+GET http://localhost:4004/catalog/VSales
+Authorization: Basic joe:
+###
+GET http://localhost:4004/catalog/SessionInfo
+Authorization: Basic joe:
+###
+GET http://localhost:4004/catalog/BusinessPartners?$top=10&$filter=Customer%20gt%20%27%20%27%20and%20FirstName%20gt%20%27%27
+Authorization: Basic joe:
+###
+GET http://localhost:4004/catalog/userInfo()
+Authorization: Basic joe:
+###

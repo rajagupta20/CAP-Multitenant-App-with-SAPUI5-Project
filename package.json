@@ -1,0 +1,127 @@
+{
+    "name": "app26012022",
+    "version": "0.0.1",
+    "repository": "<Add your repository here>",
+    "license": "UNLICENSED",
+    "description": "Business Application",
+    "engines": {
+        "node": "14.x"
+    },
+    "dependencies": {
+        "@sap/cds": "^5",
+        "@sap/audit-logging": "^5",
+        "@sap/hana-client": "^2",
+        "@sap/xsenv": "^3",
+        "@sap/xssec": "^3",
+        "passport": "^0.4.1",
+        "node-fetch": "^2.6.1",
+        "node-jose": "^2",
+        "@sap/cds-mtx": "^2",
+        "cfenv": "^1",
+        "axios": "^0.21.1",
+        "qs": "^6",
+        "debug": "^4.3",
+        "express": "^4"
+    },
+    "devDependencies": {
+        "sqlite3": "^5"
+    },
+    "scripts": {
+        "start": "npx cds run",
+        "undeploy": "cf undeploy app26012022 --delete-services --delete-service-keys"
+    },
+    "cds": {
+        "requires": {
+            "uaa": {
+                "kind": "xsuaa"
+            },
+            "auth": {
+                "[production]": {
+                    "strategy": "JWT"
+                },
+                "[development]": {
+                    "strategy": "mock",
+                    "users": {
+                        "joe": {
+                            "roles": [
+                                "Admin",
+                                "Viewer"
+                            ]
+                        },
+                        "julie": {
+                            "roles": [
+                                "Viewer"
+                            ]
+                        },
+                        "bob": {
+                            "roles": [
+                                "Viewer"
+                            ]
+                        }
+                    }
+                }
+            },
+            "db": {
+                "[production]": {
+                    "kind": "hana"
+                },
+                "[development]": {
+                    "kind": "sql"
+                },
+                "model": [
+                    "db",
+                    "srv"
+                ],
+                "vcap": {
+                    "label": "service-manager"
+                }
+            },
+            "multitenancy": true,
+            "API_BUSINESS_PARTNER": {
+                "kind": "odata-v2",
+                "model": "srv/external/API_BUSINESS_PARTNER",
+                "credentials": {
+                    "[production]": {
+                        "destination": "app26012022-API_BUSINESS_PARTNER",
+                        "path": "s4hanacloud/sap/opu/odata/sap/API_BUSINESS_PARTNER"
+                    },
+                    "[development]": {
+                        "url": "https://sandbox.api.sap.com/s4hanacloud/sap/opu/odata/sap/API_BUSINESS_PARTNER"
+                    }
+                }
+            }
+        },
+        "mtx": {
+            "api": {
+                "provisioning": true,
+                "metadata": true,
+                "model": true
+            },
+            "element-prefix": [
+                "Z_",
+                "ZZ_"
+            ],
+            "namespace-blocklist": [
+                "com.sap.",
+                "sap.",
+                "app26012022."
+            ],
+            "extension-allowlist": [
+                {
+                    "for": [
+                        "app26012022.db.Sales"
+                    ]
+                },
+                {
+                    "for": [
+                        "CatalogService"
+                    ],
+                    "kind": "service"
+                }
+            ]
+        },
+        "hana": {
+            "deploy-format": "hdbtable"
+        }
+    }
+}

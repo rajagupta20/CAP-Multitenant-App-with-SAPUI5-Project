@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+    <title>App26012022</title>
+</head>
+
+<body>
+    <h2>Business Application</h2>
+    <h3>Catalog</h3>
+    <a href="/catalog/">Catalog</a><br />
+    <a href="/catalog/$metadata">Metadata</a><br />
+    <a href="/catalog/Sales">Sales</a><br />
+    <a href="/catalog/Sales2">Sales</a><br />
+    <a href="/catalog/Sales?$apply=filter(amount%20gt%20700)/groupby((region),aggregate($count%20as%20nrCountries))">Top Sales Count</a><br />
+    <a href="/catalog/topSales(amount=700)">Top Sales</a><br />
+    <a href="/catalog/VSales">Sales by Region</a><br />
+    <a href="/catalog/SessionInfo">Session Info</a><br />
+    <a href="/catalog/BusinessPartners?$top=10&$filter=Customer%20gt%20%27%20%27%20and%20FirstName%20gt%20%27%27">Business Partners</a><br />
+    <a href="/catalog/userInfo()">User Info</a><br />
+</body>
+
+</html>
