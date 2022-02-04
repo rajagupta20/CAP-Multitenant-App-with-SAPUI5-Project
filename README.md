@@ -42,5 +42,5 @@ Steps:
 
 ==========================================================================
 
-3. Move the SAPUI5 project to resources folder. Adjust resources/html5/index.html, app/sapui5project/annotations.cds and mta.yaml accordingly.
+3. Move the SAPUI5 project to resources folder. Adjust resources/html5/index.html, resources/indec.cds, app/sapui5project/annotations.cds and mta.yaml accordingly.
 
